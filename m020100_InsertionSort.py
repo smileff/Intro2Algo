@@ -1,6 +1,6 @@
 
 def InsertionSort(nums):
-    print("Input numbers: ", nums)
+    # print("Input numbers: ", nums)
     for j in range(1, len(nums)):
         value = nums[j]
         i = j
@@ -8,12 +8,11 @@ def InsertionSort(nums):
             nums[i] = nums[i - 1]
             i -= 1
         nums[i] = value
-        print("After {}-th iteration: ".format(j), nums)
+        # print("After {}-th iteration: ".format(j), nums)
     return nums
 
 if __name__ == "__main__":
-    from m000000_TestData import GetRandomIntegers
-    nums = GetRandomIntegers(10)
-    InsertionSort(nums)
+    import m000000_Test as Test
+    Test.TestAscendingSort(InsertionSort)
 
 

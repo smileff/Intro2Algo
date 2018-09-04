@@ -1,5 +1,5 @@
 def NonincreasingInsertionSort(nums):
-    print("Input numbers: ", nums)
+    # print("Input numbers: ", nums)
     for j in range(1, len(nums)):
         tmp = nums[j]
         i = j
@@ -7,9 +7,9 @@ def NonincreasingInsertionSort(nums):
             nums[i] = nums[i - 1]
             i = i - 1
         nums[i] = tmp
-        print("After {} iteration: ".format(j - 1), nums)
+        # print("After {} iteration: ".format(j - 1), nums)
     return nums
 
 if __name__ == "__main__":
-    data = [1, 2, 3, 4, 5]
-    print(NonincreasingInsertionSort(data))
+    import m000000_Test as Test
+    Test.TestDescendingSort(NonincreasingInsertionSort)
