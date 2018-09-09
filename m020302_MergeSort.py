@@ -5,6 +5,8 @@ def AscendingMergeSort(nums, b = -1, e = -1):
         R = nums[q:r]
         i = 0
         j = 0
+        # Loop invarient:
+        #   nums[p, k] contains the sorted smallest (k-p) numbers in L and R.
         for k in range(p, r):
             if i >= len(L):
                 nums[k] = R[j]
