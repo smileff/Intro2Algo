@@ -11,6 +11,14 @@ def PrintPerformance(func):
         return retValue
     return RunFunctionAndPrintPerformance
 
+def ReturnPerformance(func):
+    def RunFunctionAndReturnPerformance(*args, **kw):
+        startTime = time.time()
+        retValue = func(*args, **kw)
+        endTime = time.time()
+        elapsedTime = endTime - startTime
+        return (retValue, elapsedTime)
+    return RunFunctionAndReturnPerformance
 
 # Generate test data
 
