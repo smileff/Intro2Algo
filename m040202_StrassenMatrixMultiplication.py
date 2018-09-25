@@ -1,5 +1,6 @@
 from m000000_Matrix import Matrix, SizeNotMatch, GetRandomMatrix
 from m000000_Test import ReturnPerformance
+import numpy
 
 @ReturnPerformance
 def Multiply(mat1, mat2):
@@ -13,6 +14,19 @@ def Multiply(mat1, mat2):
                 elem += mat1.Get(r, i) * mat2.Get(i, c)
             res.Set(r, c, elem)
     return res
+
+@ReturnPerformance
+def MultiplyNDArray(mat1, mat2):
+    assert mat1.ndim == 2 and mat2.ndim == 2 and mat1.shape[1] == mat2.shape[0]
+    mat3 = numpy.empty((mat1.shape[0], mat2.shape[1]))
+    for r in range(mat1.shape[0]):
+        for c in range(mat2.shape[1]):
+            s = 0
+            for i in range(mat1.shape[1]):
+                s += mat1[r, i] * mat2[i, c]
+            mat3[r, c] = s
+    return mat3
+
 
 @ReturnPerformance
 def StrassenMultiply(mat1, mat2):
@@ -86,6 +100,10 @@ if __name__ == "__main__":
     print("Mul with strassen multipty, time: {}".format(t0))
     print(mat4)
 
+    mat5, t0 = MultiplyNDArray(numpy.array(mat1.elems).reshape((2, 2)), numpy.array(mat2.elems).reshape((2, 2)))
+    print("Mul with brute force way with ndarray, time: {}".format(t0))
+    print(mat5)
+
     if mat3 == mat4:
         print("Two results match.")
     else:
@@ -101,6 +119,9 @@ if __name__ == "__main__":
 
         mat3, t0 = Multiply(mat1, mat2)
         print("Mul with brute force way, time: {}".format(t0))
+
+        mat5, t0 = MultiplyNDArray(numpy.array(mat1.elems).reshape((matSize, matSize)), numpy.array(mat2.elems).reshape((matSize, matSize)))
+        print("Mul with strassen multipty, time: {}".format(t0))
 
         mat4, t0 = StrassenMultiply(mat1, mat2)
         print("Mul with strassen multipty, time: {}".format(t0))
