@@ -1,13 +1,13 @@
 def NonincreasingInsertionSort(nums):
-    # print("Input numbers: ", nums)
     for j in range(1, len(nums)):
+        # Loop invariant: nums[0:j] is descending sorted.
         tmp = nums[j]
-        i = j
-        while i > 0 and nums[i - 1] < tmp:
-            nums[i] = nums[i - 1]
+        i = j - 1
+        while i >= 0 and nums[i] < tmp:
+            nums[i + 1] = nums[i]
             i = i - 1
-        nums[i] = tmp
-        # print("After {} iteration: ".format(j - 1), nums)
+        # So nums[i] is the first elem >= tmp, or i == -1
+        nums[i + 1] = tmp
     return nums
 
 if __name__ == "__main__":
